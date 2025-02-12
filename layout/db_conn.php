@@ -1,4 +1,7 @@
 <?php
+
+#--databse connection
+
 class Database {
     private $host = "localhost";
     private $user = "root";

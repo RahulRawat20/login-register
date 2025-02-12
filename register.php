@@ -5,7 +5,6 @@
 <body>
 <div class="container">
     <h2 align=center>Register</h2><hr>
-
     <form id="registerForm" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="name" class="form-label">Full Name</label>

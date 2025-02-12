@@ -13,33 +13,27 @@ class User {
         $hashPass = password_hash($password, PASSWORD_BCRYPT);
         $imagePath = null;
     
-        // Check if an image was uploaded
         if ($image && isset($image["name"]) && $image["error"] == 0) {
             $targetDir = "uploads/"; 
             $imagePath = $targetDir . time() . "_" . basename($image["name"]);
     
-            // Move uploaded file to the target directory
             if (!move_uploaded_file($image["tmp_name"], $imagePath)) {
                 return ["error" => "Failed to upload image"];
             }
         }
     
-        // Prepare the SQL query to insert user data
         $stmt = $this->db->conn->prepare("INSERT INTO users (firstname, lastname, dob, email, gender, password, image) 
                                           VALUES (?, ?, ?, ?, ?, ?, ?)");
     
-        // Bind parameters
         $stmt->bind_param("sssssss", $firstname, $lastname, $dob, $email, $gender, $hashPass, $imagePath);
     
-        // Execute the query and return result
         if ($stmt->execute()) {
             return ["success" => true, "message" => "User registered successfully"];
         } else {
             return ["error" => "Failed to register user"];
         }
     }
-    
-    
+       
     #--login function--#
     public function login($email, $password) {
         $stmt = $this->db->conn->prepare("SELECT * FROM users WHERE email = ?");
@@ -82,9 +76,6 @@ class User {
         
         return $result->fetch_assoc();
     }
-
-
-
 
 
 

@@ -7,7 +7,6 @@ if (!isset($_SESSION['user'])) {
 else{
     $user = $_SESSION['user'];
   //print_r($user);
-    
 }
 ?>
 
