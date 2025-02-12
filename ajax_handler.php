@@ -1,6 +1,8 @@
 <?php
+// Class
 require_once "User.php";
 
+// Object
 $user = new User();
 
 // register function
